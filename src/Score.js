@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import entities from 'entities';
 import { connect } from 'react-redux';
 import { loadQuestions } from './redux/actions';
+import AnswerCard from './components/AnswerCard';
 
 class Score extends React.Component {
 	onPlayAgain() {
@@ -14,23 +14,10 @@ class Score extends React.Component {
 	render() {
 		const { score, answered } = this.props;
 		return (
-			<View style={styles.container}>
+			<View style={styles.backdrop}>
 				<Text>Score: {score / answered.length * 100}% </Text>
-				{answered.length > 0 &&
-					answered.map((answer, i) => (
-						<View key={i}>
-							{answer.points === 1 ? (
-								<Text style={styles.right}>
-									{entities.decodeHTML(answer.question.question)} - {answer.question.correct_answer}
-								</Text>
-							) : (
-								<Text style={styles.wrong}>
-									{entities.decodeHTML(answer.question.question)} - {answer.question.correct_answer}
-								</Text>
-							)}
-						</View>
-					))}
-				<TouchableOpacity style={styles.item} onPress={() => this.onPlayAgain()}>
+				{answered.map((answer, i) => <AnswerCard key={i} delay={i * 100} answer={answer} />)}
+				<TouchableOpacity style={styles.button} onPress={() => this.onPlayAgain()}>
 					<Text>Play Again?</Text>
 				</TouchableOpacity>
 			</View>
@@ -39,19 +26,22 @@ class Score extends React.Component {
 }
 
 const styles = StyleSheet.create({
-	container: {
+	backdrop: {
 		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		backgroundColor: '#56E3B1',
+		alignItems: 'center'
 	},
-	right: {
-		backgroundColor: 'lightgreen',
-		padding: 5
+	button: {
+		height: 60,
+		backgroundColor: '#FACF5A',
+		margin: 5,
+		padding: 15
 	},
-	wrong: {
-		backgroundColor: 'pink',
-		padding: 5
+	text: {
+		fontSize: 20,
+		padding: 15,
+		color: '#444854'
 	}
 });
 

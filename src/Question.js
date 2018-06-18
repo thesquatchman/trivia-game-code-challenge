@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import entities from 'entities';
 import { connect } from 'react-redux';
 import { submitAnswer } from './redux/actions';
+
+import QuestionCard from './components/QuestionCard';
 
 class Question extends React.Component {
 	componentWillUpdate(nextProps) {
@@ -23,19 +24,8 @@ class Question extends React.Component {
 	render() {
 		const { questions, question, answered } = this.props;
 		return (
-			<View style={styles.container}>
-				<Text>{question.category}</Text>
-				<View>
-					<Text>{entities.decodeHTML(question.question)}</Text>
-				</View>
-				<View>
-					<TouchableOpacity style={styles.item} onPress={() => this.scorePoints('True')}>
-						<Text>True</Text>
-					</TouchableOpacity>
-					<TouchableOpacity style={styles.item} onPress={() => this.scorePoints('False')}>
-						<Text>False</Text>
-					</TouchableOpacity>
-				</View>
+			<View style={styles.backdrop}>
+				<QuestionCard question={question} onScorePoints={choice => this.scorePoints(choice)} />
 				<View>
 					<Text>
 						{answered.length + 1} of {questions.length}
@@ -47,16 +37,11 @@ class Question extends React.Component {
 }
 
 const styles = StyleSheet.create({
-	container: {
+	backdrop: {
 		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
-	},
-	item: {
-		backgroundColor: 'whitesmoke',
-		marginBottom: 5,
-		padding: 15
+		justifyContent: 'center',
+		backgroundColor: '#56E3B1',
+		alignItems: 'center'
 	}
 });
 
