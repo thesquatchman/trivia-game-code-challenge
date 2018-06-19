@@ -22,7 +22,7 @@ class Welcome extends React.Component {
 			</View>
 		) : (
 			<View style={styles.backdrop}>
-				<Text>Loading</Text>
+				<Text style={styles.text}>Loading</Text>
 			</View>
 		);
 	}
@@ -31,8 +31,13 @@ const styles = StyleSheet.create({
 	backdrop: {
 		flex: 1,
 		justifyContent: 'center',
-		backgroundColor: '#56E3B1',
+		backgroundColor: '#1F2E3B',
 		alignItems: 'center'
+	},
+	text: {
+		fontSize: 20,
+		padding: 15,
+		color: '#fff'
 	}
 });
 const mapStateToProps = state => ({

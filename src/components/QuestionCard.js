@@ -6,19 +6,19 @@ import * as Animatable from 'react-native-animatable';
 
 const QuestionCard = ({ question, onScorePoints }) => (
 	<Animatable.View animation="zoomInUp" delay={500} style={styles.container}>
-		<Text>{question.category}</Text>
-		<View>
-			<Text>{entities.decodeHTML(question.question)}</Text>
+		<Text style={styles.heading}>{question.category}</Text>
+		<View style={styles.questionBox}>
+			<Text style={styles.text}>{entities.decodeHTML(question.question)}</Text>
 		</View>
 		<View style={styles.inputContainer}>
 			<TouchableOpacity style={styles.button} onPress={() => onScorePoints('True')}>
-				<Text>
-					<Ionicons name="md-thumbs-up" size={20} color="#444854" /> True
+				<Text style={styles.text}>
+					<Ionicons name="md-thumbs-up" size={20} color="#fff" /> True
 				</Text>
 			</TouchableOpacity>
 			<TouchableOpacity style={styles.button} onPress={() => onScorePoints('False')}>
-				<Text>
-					<Ionicons name="md-thumbs-up" size={20} color="#444854" /> False
+				<Text style={styles.text}>
+					<Ionicons name="md-thumbs-down" size={20} color="#fff" /> False
 				</Text>
 			</TouchableOpacity>
 		</View>
@@ -36,12 +36,24 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		fontSize: 20,
-		padding: 15,
-		color: '#444854'
+		color: '#fff'
+	},
+	heading: {
+		fontSize: 20,
+		fontWeight: 'bold',
+		color: '#fff'
+	},
+	questionBox: {
+		padding: 10,
+		marginHorizontal: 15,
+		marginVertical: 30,
+		borderColor: '#fff',
+		borderStyle: 'solid',
+		borderWidth: 1
 	},
 	button: {
 		height: 60,
-		backgroundColor: '#FACF5A',
+		backgroundColor: '#03A187',
 		margin: 5,
 		padding: 15
 	}

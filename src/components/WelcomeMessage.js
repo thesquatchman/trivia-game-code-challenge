@@ -5,12 +5,12 @@ import * as Animatable from 'react-native-animatable';
 
 const WelcomeMessage = ({ onStartGame }) => (
 	<Animatable.View animation="fadeIn" style={styles.container}>
-		<Text style={styles.text}>Welcome to the Trivia Challenge!</Text>
+		<Text style={styles.heading}>Welcome to the Trivia Challenge!</Text>
 		<Text style={styles.text}>You will be presented with 10 True or False questions.</Text>
 		<Text style={styles.text}>Can you score 100%?</Text>
 		<TouchableOpacity style={styles.button} onPress={() => onStartGame()}>
 			<Text style={styles.text}>
-				BEGIN <Ionicons name="md-play" size={20} color="#444854" />
+				BEGIN <Ionicons name="md-play" size={20} color="#fff" />
 			</Text>
 		</TouchableOpacity>
 	</Animatable.View>
@@ -25,17 +25,17 @@ const styles = StyleSheet.create({
 	text: {
 		fontSize: 20,
 		padding: 15,
-		color: '#444854'
+		color: '#fff'
 	},
-	loading: {
+	heading: {
 		fontSize: 20,
-		padding: 15,
-		color: 'whitesmoke'
+		fontWeight: 'bold',
+		color: '#fff'
 	},
 	button: {
-		backgroundColor: '#FACF5A',
+		backgroundColor: '#03A187',
 		marginBottom: 5,
-		padding: 15
+		padding: 5
 	}
 });
 

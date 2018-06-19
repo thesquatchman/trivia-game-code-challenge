@@ -26,11 +26,10 @@ class Question extends React.Component {
 		return (
 			<View style={styles.backdrop}>
 				<QuestionCard question={question} onScorePoints={choice => this.scorePoints(choice)} />
-				<View>
-					<Text>
-						{answered.length + 1} of {questions.length}
-					</Text>
-				</View>
+				]{' '}
+				<Text style={styles.text}>
+					{answered.length + 1} of {questions.length}
+				</Text>
 			</View>
 		);
 	}
@@ -40,8 +39,13 @@ const styles = StyleSheet.create({
 	backdrop: {
 		flex: 1,
 		justifyContent: 'center',
-		backgroundColor: '#56E3B1',
+		backgroundColor: '#1F2E3B',
 		alignItems: 'center'
+	},
+	text: {
+		fontSize: 20,
+		color: '#fff',
+		marginVertical: 40
 	}
 });
 

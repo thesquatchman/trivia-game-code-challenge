@@ -5,38 +5,33 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 
 const AnswerCard = ({ answer, delay }) => (
-	<Animatable.View animation="zoomInUp" delay={delay} style={styles.container}>
-		{answer.points === 1 ? (
-			<Text style={styles.right}>
-				<Ionicons name="md-checkmark-circle" size={20} color="#444854" />
-				{entities.decodeHTML(answer.question.question)} - {answer.question.correct_answer}
-			</Text>
-		) : (
-			<Text style={styles.wrong}>
-				<Ionicons name="md-close-circle" size={20} color="#444854" />
-				{entities.decodeHTML(answer.question.question)} - {answer.question.correct_answer}
-			</Text>
-		)}
+	<Animatable.View animation="zoomInUp" delay={delay} style={styles.card}>
+		<Text style={styles.text}>{entities.decodeHTML(answer.question.question)}</Text>
+		<Text style={styles.textScore}>
+			{answer.points === 1 ? (
+				<Ionicons name="md-checkmark-circle" size={16} color="#03A187" />
+			) : (
+				<Ionicons name="md-close-circle" size={16} color="#FF6E6E" />
+			)}
+			{answer.question.correct_answer}
+		</Text>
 	</Animatable.View>
 );
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		padding: 5
+	card: {
+		padding: 5,
+		width: '100%',
+		marginVertical: 10
 	},
 	text: {
-		fontSize: 20,
-		padding: 15,
-		color: '#444854'
+		fontSize: 16,
+		color: '#fff'
 	},
-	right: {
-		backgroundColor: 'lightgreen'
-	},
-	wrong: {
-		backgroundColor: 'pink'
+	textScore: {
+		fontSize: 16,
+		fontWeight: 'bold',
+		color: '#fff'
 	}
 });
 
