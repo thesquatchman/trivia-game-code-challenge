@@ -15,8 +15,7 @@ class Welcome extends React.Component {
 	}
 
 	render() {
-		const { questions } = this.props;
-		return questions.length > 0 ? (
+		return this.props.questions.length > 0 ? (
 			<View style={styles.backdrop}>
 				<WelcomeMessage onStartGame={() => startGame()} />
 			</View>
